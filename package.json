@@ -12,10 +12,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.7",
+    "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.7",
     "@angular/compiler": "~9.1.7",
     "@angular/core": "~9.1.7",
     "@angular/forms": "~9.1.7",
+    "@angular/material": "^9.2.4",
     "@angular/platform-browser": "~9.1.7",
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
@@ -42,5 +44,17 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonnguyen9800/xo-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonnguyen9800/xo-game/issues"
+  },
+  "homepage": "https://github.com/sonnguyen9800/xo-game#readme"
 }
