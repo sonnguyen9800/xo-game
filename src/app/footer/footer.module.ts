@@ -9,6 +9,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 // Add Fontawesome module:
@@ -25,7 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatGridListModule,
     MatCardModule,
     MatIconModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatButtonModule
   ],
   exports: [
     FooterComponent
