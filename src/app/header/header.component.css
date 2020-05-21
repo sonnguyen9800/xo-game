@@ -1,0 +1,16 @@
+.top-row {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+}
+
+.top-row #title {
+    margin: auto;
+    font-size: 3rem;   
+}
+
+.bottom-row {
+}
+.bottom-row #subtitle {
+    margin: auto;
+    font-size: 1rem;
+}

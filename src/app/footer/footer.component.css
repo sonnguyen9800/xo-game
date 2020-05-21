@@ -1,0 +1,31 @@
+
+
+
+
+.footer {
+    border-radius: 0px;
+}
+
+#game-info {
+    margin: 1rem;
+    
+}
+
+
+.actions #text{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.bottom-row {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.bottom-row #copyright {
+    margin: auto;
+    font-weight: normal;
+    font-size: 1rem;    
+}
+
