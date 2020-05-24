@@ -1,45 +1,25 @@
-<mat-grid-list cols="5" rows="2" class="footer" rowHeight="2:1">
-    <mat-grid-tile colspan="3" id="game-info" class="md-caption">
-        <div class="pa">
-	    Tic-tac-toe (American English), noughts and crosses (British English), or Xs and Os is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
-	</div>
+<div fxLayout="column" fxLayout.xs="column" class="footer">
 
-    </mat-grid-tile>
+    <div fxLayout="row" fxLayout.xs="column">
+	
+        <div fxFlexOrder="0">
+            <p class="mat-body-1" id="game-info">Tic-tac-toe (American English), noughts and crosses (British English), or Xs and Os is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.</p>
+	</div>
+	
+	
+        <div fxLayout="column" fxLayout.xs="column">
+            <span fxFlexAlign="center" id="small-text">Contact Me</span>
+	    <div fxFlexAlign="center" fxLayout="row" fxLayout.xs="column" fxFlexOrder="1" id="contact">
+		<a href="https://www.facebook.com/sonng9800"><button mat-button><fa-icon [icon]="icon1" ></fa-icon></button></a>
+		<a href="https://www.youtube.com/channel/UChWA0xyh-zBuxfsc3itSffA"><button mat-button><fa-icon [icon]="icon2"></fa-icon></button></a>
+		<a href="https://github.com/sonnguyen9800"><button mat-button><fa-icon [icon]="icon3"></fa-icon></button></a>	   
+		<a href="https://www.linkedin.com/in/sonn9800/"><button mat-button><fa-icon [icon]="icon4"></fa-icon></button></a>	    
+	    </div>	
+	</div>	        
+    </div>
     
-    <mat-grid-tile colspan="2" id="contact">
-        <div class="button-row"> Contact Me </div>
-        <div class="button-row">
-	    
-            <a href="https://www.facebook.com/sonng9800">
-		<button mat-button>
-		    <fa-icon [icon]="icon1" ></fa-icon>
-		</button>		
-	    </a>
-
-            <a href="https://www.youtube.com/channel/UChWA0xyh-zBuxfsc3itSffA">
-		<button mat-button>
-		    <fa-icon [icon]="icon2"></fa-icon>
-		</button>		
-	    </a>
-
-            <a href="https://github.com/sonnguyen9800">
-		<button mat-button>
-		    <fa-icon [icon]="icon3"></fa-icon>
-		</button>
-	    </a>
-	    
-            <a href="https://www.linkedin.com/in/sonn9800/">
-		<button mat-button>
-		    <fa-icon [icon]="icon4"></fa-icon>
-		</button>		
-	    </a>
-	</div>
-    </mat-grid-tile>
-
-</mat-grid-list>
-
-<div class="footer">
-    <span class='mat-caption' id="copyright-text">Copyright @ 2020 Sonnguyen9800</span>    
+    
+    <div id="copyright" fxFlexAlign="center">
+	<span class='mat-caption' id="copyright-text">Copyright @ 2020 Sonnguyen9800</span>
+    </div>    
 </div>
-
-    

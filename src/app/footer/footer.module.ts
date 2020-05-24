@@ -15,7 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 // Add Fontawesome module:
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
+// Add FlexLayoutModule:
+import { FlexLayoutModule } from '@angular/flex-layout'
 @NgModule({
   declarations: [
     FooterComponent
@@ -27,7 +28,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatCardModule,
     MatIconModule,
     FontAwesomeModule,
-    MatButtonModule
+    MatButtonModule,
+    FlexLayoutModule
   ],
   exports: [
     FooterComponent

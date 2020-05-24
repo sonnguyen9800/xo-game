@@ -6,32 +6,37 @@ import { AppComponent } from './app.component';
 import { CellComponent } from './cell/cell.component';
 import { TableComponent } from './table/table.component';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainComponent } from './main/main.component';
-
 
 // Angular Material
 
 // Import Header module:
 import { HeaderModule } from './header/header.module'
 
+// Import Main Module
+import { MainModule } from './main/main.module'
+
 // Import Footer module:
 import { FooterModule } from './footer/footer.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+// import flex layout module
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CellComponent,
     TableComponent,
-    MainComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HeaderModule, FooterModule, FontAwesomeModule
+    HeaderModule, FooterModule, FontAwesomeModule,
+    MainModule,
+    FlexLayoutModule
     
   ],
   providers: [],

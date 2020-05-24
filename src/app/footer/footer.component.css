@@ -1,50 +1,30 @@
 .footer {
     background-color : #212121;
-    display: flex;
-    justify-content: center;
-}
 
-.footer #copyright-text {
-    color: white;
-    font-size: 1rem;
-    margin-bottom: 1rem;
 }
 
 .footer #game-info {
-    color: white;
     margin: 1rem;
-    font-size: auto;
-    top: 1px;
-}
-.pa {
-    position: absolute;
-    top: 1rem;
-    margin: 1rem;
-    
-}
-.footer #contact {
-    color: white;
-}
-
-.button-row {
-    display: table-cell;
-}
-
-.button-row button{
-    display: table-cell;
-    margin-left: 1rem;
-    background-color: transparent;
-    border-color: none;
-    padding: 0;
-    border: none;
-    background: none;
-}
-
-.button-row button :hover {
-    color: darkgrey;
-}
-fa-icon {
-    font-size: 2rem;
     color: lightgrey;
 }
 
+.footer #small-text {
+    margin: 1rem;
+    color: white;
+
+}
+
+.footer #copyright {
+    color: white;
+    margin: 1rem;
+}
+
+.footer #contact button {
+    color: grey;
+    font-size: 1rem;
+}
+
+.footer #contact button :hover {
+    color: white;
+    font-size: 2rem;
+}
