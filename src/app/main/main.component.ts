@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   // Declare sound object
   sound : Howl ;
   start_sound: Howl;
+  background_soundtrack : Howl;
 
   
   
@@ -37,6 +38,13 @@ export class MainComponent implements OnInit {
       src: ['../../assets/start-button.mp3'],
       html5: true
     })
+
+     this.background_soundtrack = new Howl({
+       src: ['../../assets/background1.mp3'],
+       loop: true,
+      html5: true
+    })
+    this.background_soundtrack.play()    
   }
 
 
