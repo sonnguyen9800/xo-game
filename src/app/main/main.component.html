@@ -1,1 +1,50 @@
-<p>This is the main Component</p>
+<div class="main-component">
+    
+	    
+    <h1 class="main-menu-title">Please Select the Game Mode</h1>
+    
+    
+    <section class="select-section">
+	
+        <mat-card>
+	    <mat-radio-group ([ngModel])="labelPosition">
+		<h2 class="mode-select-title">
+		    Select Your Opponents
+		</h2>
+
+                <div class="select-group">
+		    <mat-radio-button class="example-margin" value="0">Player next to You (Offline)</mat-radio-button>
+		    <mat-radio-button class="example-margin" value="1">AI Easy</mat-radio-button>
+		    <mat-radio-button class="example-margin" value="2">AI Normal</mat-radio-button>
+		    <mat-radio-button class="example-margin" value="3">AI Hard</mat-radio-button>
+		</div>
+
+	    </mat-radio-group>
+	</mat-card>
+	
+    </section>
+    
+    <section class="select-section">
+	
+        <mat-card>
+            <mat-card-header color="primary">
+		<h2 class="mode-select-type">
+		    Select Your Map Type
+		</h2>
+	    </mat-card-header>
+	    <mat-radio-group ([ngModel])="labelPosition">
+		
+		<mat-radio-button class="example-margin" value="0">6x6</mat-radio-button>
+		<mat-radio-button class="example-margin" value="1">8x8</mat-radio-button>
+		<mat-radio-button class="example-margin" value="2">10x10</mat-radio-button>
+	    </mat-radio-group>
+	</mat-card>
+	
+    </section>
+
+    <button mat-flat-button color="primary" id="start-button">Start The Game</button>
+
+    
+
+</div>
+

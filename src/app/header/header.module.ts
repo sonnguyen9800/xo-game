@@ -14,6 +14,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 
 
+// Import flex layout module
+// Add FlexLayoutModule:
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    FlexLayoutModule
   ],
   exports: [
     HeaderComponent

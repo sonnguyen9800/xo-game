@@ -1,0 +1,44 @@
+.main-component{
+    background: #424242;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+mat-card{
+    border-radius: 0px;
+    box-shadow: none !important;
+}
+
+mat-card-content{
+    /* border: solid; */
+}
+
+.main-menu-title {
+    margin: 10px;
+    text-align: center;
+    color: white;        
+}
+
+.select-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+}
+
+.select-group{
+
+}
+.example-margin {
+    margin: 0 10px;
+}
+
+#start-button{
+    margin: auto;
+    display: block;
+}
+mat-card-header{
+    
+}
