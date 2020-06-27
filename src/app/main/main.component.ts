@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  mode = "Versus Player";
+  size = "6x6"
   checked = false;
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';

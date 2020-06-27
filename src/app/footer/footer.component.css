@@ -6,6 +6,7 @@
 .footer #game-info {
     margin: 1rem;
     color: lightgrey;
+    
 }
 
 .footer #small-text {
@@ -17,6 +18,7 @@
 .footer #copyright {
     color: white;
     margin: 1rem;
+    font-size: large;
 }
 
 .footer #contact button {
