@@ -23,14 +23,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import flex layout module
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, 
     AppRoutingModule,
     BrowserAnimationsModule,
     HeaderModule, FooterModule, FontAwesomeModule,

@@ -13,7 +13,7 @@
     </div>
 
     <!-- main-menu -->
-    <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="center" class="main-menu" >	
+    <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="center center" class="main-menu" fxLayout.xs="column">	
         <div>
 	    <section class="select-section">	
 		<mat-card class="mat-primary mat-elevation-z5">
@@ -44,10 +44,10 @@
 		    <h2 class="mode-select-title mat-display-1">Select Your Map Size</h2>
 		</mat-card-header>		
                 <mat-card-content fxLayout="column" fxLayoutGap="1rem">
-		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.Small)">5x5</button>		
-		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.Medium)">6x6</button>		
-		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.Large)">8x8</button>		
-		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.VeryLarge)">10x10</button>		
+		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.Small)">{{AllMap.Small}}</button>		
+		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.Medium)">{{AllMap.Medium}}</button>		
+		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.Large)">{{AllMap.Large}}</button>		
+		    <button mat-flat-button color="primary" (click)="selectMap(AllMap.VeryLarge)">{{AllMap.VeryLarge}}</button>		
 		</mat-card-content>				
                 <mat-card-actions>
 		    Current Size: {{size}}
@@ -57,10 +57,18 @@
     </div>
     
 
-    <section class="button-section">
-	<button mat-flat-button color="primary" id="start-button" class="mat-display-1 mat-elavation-z5" (click)="playGame()">
+    <section class="button-section" >
+	<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem" fxLayout.xs="column">
+	    <button mat-flat-button color="primary" id="start-button" class="mat-display-1 mat-elavation-z5" (click)="playGame()">
 		Start the Game
-	</button>		
+	    </button>
+
+	    <button mat-flat-button color="primary" id="start-button" class="mat-display-1 mat-elavation-z5" (click)="toAboutPage()">
+		More Information
+	    </button>
+      </div>
+      
+		
     </section>
 
 </div>

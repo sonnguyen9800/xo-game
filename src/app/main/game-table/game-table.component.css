@@ -1,0 +1,28 @@
+mat-grid-tile {
+    background: lightblue;
+}
+
+.table-panel{
+    margin-top: 3rem;
+}
+.button-section{
+    margin-top: 4rem;
+    text-align: center;
+}
+
+button {
+    margin: auto;
+    min-width: 10rem;
+}
+
+.main-menu-title {
+    color: white;
+    margin: auto;
+}
+
+#start-button{
+    min-width: 10rem;
+    min-height: 5rem;
+    border-radius: 5px;
+    max-width: none;
+}

@@ -1,1 +1,26 @@
-<p>game-table works!</p>
+
+<mat-toolbar color="secondary">
+    <mat-toolbar-row>
+	<h1 class="main-menu-title">The Game is ON!</h1>		    		
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div class="table-panel">
+  <div fxLayout="row"  *ngFor="let number of Arr(this.size).fill(1)" fxLayoutAlign="center center" >
+    <div  *ngFor="let number of Arr(this.size).fill(1)">
+	<app-cell></app-cell>
+    </div>    
+  </div>
+</div>
+
+<div>
+    <section class="button-section" >
+	<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem" fxLayout.xs="column">
+	    <button mat-flat-button color="primary" id="start-button" class="mat-display-1 mat-elavation-z5">
+		Back
+	    </button>
+	</div>		
+    </section>
+
+</div>

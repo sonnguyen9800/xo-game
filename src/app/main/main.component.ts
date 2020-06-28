@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OpponentType, MapSize } from '../GameMode';
 import { GameConfig } from '../game-config';
 import {Howl } from 'howler';
-
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -14,8 +14,8 @@ export class MainComponent implements OnInit {
   AllMap = MapSize;
 
   // Data
-  mode : OpponentType = this.AllMode.Player;
-  size : MapSize = this.AllMap.Small;
+  mode : OpponentType = OpponentType.Player;
+  size : MapSize = MapSize.Small;
   gameConfig: GameConfig = {
     Map: this.size,  
     Opponent: this.mode
@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
 
   
   
-  constructor(){
+  constructor(private router: Router){
  
   }
 
@@ -67,6 +67,14 @@ export class MainComponent implements OnInit {
     this.gameConfig.Map = this.size;
     this.gameConfig.Opponent = this.mode;
     console.log("Game: " + this.gameConfig.Opponent + "; Map Type: " + this.gameConfig.Map);
+    this.router.navigate(
+      ['game', this.gameConfig.Opponent, this.gameConfig.Map]
+    )
     
+  }
+
+  toAboutPage(){
+    this.start_sound.play();
+    this.router.navigateByUrl('/about');
   }
 }

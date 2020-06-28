@@ -1,0 +1,8 @@
+div {
+    height: 6rem;
+    width: 6rem;
+    background-color: skyblue;
+    float: left;
+    margin: 0 4px 4px 0;
+    color: black;
+}
