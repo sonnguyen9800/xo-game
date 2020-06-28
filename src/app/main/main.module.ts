@@ -6,9 +6,11 @@ import { MainComponent }  from './main.component';
 // Import Angular-material:
 import { MaterialModule  } from '../material/material.module';
 
+
+
 @NgModule({
   declarations: [
-    MainComponent
+    MainComponent,
   ],
   imports: [
     CommonModule,

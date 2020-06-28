@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OpponentType, MapSize } from '../GameMode';
-
+import { GameConfig } from '../game-config';
 import {Howl } from 'howler';
 
 
@@ -14,9 +14,13 @@ export class MainComponent implements OnInit {
   AllMap = MapSize;
 
   // Data
-  mode = this.AllMode.Player;
-  size = this.AllMap.Small;
-
+  mode : OpponentType = this.AllMode.Player;
+  size : MapSize = this.AllMap.Small;
+  gameConfig: GameConfig = {
+    Map: this.size,  
+    Opponent: this.mode
+  }
+  
   // Declare sound object
   sound : Howl ;
   start_sound: Howl;
@@ -44,7 +48,7 @@ export class MainComponent implements OnInit {
        loop: true,
       html5: true
     })
-    this.background_soundtrack.play()    
+    // this.background_soundtrack.play()    
   }
 
 
@@ -60,5 +64,9 @@ export class MainComponent implements OnInit {
 
   playGame(){
     this.start_sound.play();
+    this.gameConfig.Map = this.size;
+    this.gameConfig.Opponent = this.mode;
+    console.log("Game: " + this.gameConfig.Opponent + "; Map Type: " + this.gameConfig.Map);
+    
   }
 }
