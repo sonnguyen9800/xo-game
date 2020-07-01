@@ -23,4 +23,7 @@ export class CellComponent implements OnInit, Cell {
   ngOnInit(): void {
   }
 
+  changeState(state: number){
+    this.state = state;
+  }
 }

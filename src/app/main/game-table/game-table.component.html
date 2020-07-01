@@ -11,7 +11,8 @@
 <div class="table-panel">
     <div fxLayout="row" fxLayoutAlign="center center"
 	 *ngFor="let row of this.GameState; let i = index" >
-      <app-cell *ngFor="let column of row; let j = index" [row]="i" [column]="j" (click)="selectCell(i,j)">
+	<app-cell *ngFor="let column of row; let j = index" [row]="i" [column]="j" (click)="selectCell(i,j)"
+		  id="{{i}}_{{j}}" #cell>
 	  
       </app-cell>
     </div>
