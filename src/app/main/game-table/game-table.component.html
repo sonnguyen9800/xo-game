@@ -1,23 +1,26 @@
 
 <mat-toolbar color="secondary">
     <mat-toolbar-row>
-	<h1 class="main-menu-title">The Game is ON!</h1>		    		
+	<h1 class="main-menu-title">
+	    You are playing versus {{this.opponent}}
+	</h1>		    		
     </mat-toolbar-row>
 </mat-toolbar>
 
 
 <div class="table-panel">
-  <div fxLayout="row"  *ngFor="let number of Arr(this.size).fill(1)" fxLayoutAlign="center center" >
-    <div  *ngFor="let number of Arr(this.size).fill(1)">
-	<app-cell></app-cell>
-    </div>    
-  </div>
+    <div fxLayout="row" fxLayoutAlign="center center"
+	 *ngFor="let row of this.GameState; let i = index" >
+      <app-cell *ngFor="let column of row; let j = index" [row]="i" [column]="j" (click)="selectCell(i,j)">
+	  
+      </app-cell>
+    </div>
 </div>
 
 <div>
     <section class="button-section" >
 	<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem" fxLayout.xs="column">
-	    <button mat-flat-button color="primary" id="start-button" class="mat-display-1 mat-elavation-z5">
+	    <button mat-flat-button color="primary" id="start-button" class="mat-display-2 mat-elavation-z5" (click)="goBack()">
 		Back
 	    </button>
 	</div>		
