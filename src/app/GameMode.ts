@@ -1,8 +1,8 @@
 export enum MapSize {
-  "Small" = "5x5",
-  "Medium" = "6x6",
-  "Large" = "8x8",
-  "VeryLarge" = "10x10"
+  "Small" = "8x8",
+  "Medium" = "10x10",
+  "Large" = "12x12",
+  "VeryLarge" = "14x14"
 }
 
 export enum OpponentType{

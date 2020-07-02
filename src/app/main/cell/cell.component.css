@@ -4,15 +4,8 @@ div {
     background-color: #f2f2f2;
     float: left;
     margin: 0 4px 4px 0;
-    color: black;
 }
 p {
     color: black;
 }
 
-img {
-    
-    margin: auto;
-    height: 100%;
-    width: auto;
-}

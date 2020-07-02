@@ -9,6 +9,8 @@ import { CellImp } from '../cell/CellImp';
 
 import { Player } from '../../Player';
 import {CellComponent } from '../cell/cell.component'
+import {Howl } from 'howler';
+
 @Component({
   selector: 'app-game-table',
   templateUrl: './game-table.component.html',
@@ -16,10 +18,18 @@ import {CellComponent } from '../cell/cell.component'
 })
 export class GameTableComponent implements OnInit {
 
+  back_sound : Howl;
+  cell_marks : Howl[] = [];
+  error_sound : Howl;
+  
+  
+  
  @ViewChildren(CellComponent) allCells: QueryList<CellComponent>;
   // @ContentChildren('cell')  allCells: QueryList<CellComponent>;
   
 
+
+  
   
   public opponent: OpponentType;
   public mapsize: MapSize;
@@ -46,9 +56,7 @@ export class GameTableComponent implements OnInit {
     })
 
     // get the size (dimension of game map)
-    this.size = this.getMapSize(this.mapsize);
-    
-  
+    this.size = this.getMapSize(this.mapsize);      
     console.log(this.GameState)
             
   }
@@ -58,22 +66,60 @@ export class GameTableComponent implements OnInit {
   ngOnInit(): void {
     // Create the map 2d GameState
     this.GameState = this.initializeGameState(this.size);        
+
+
+    this.back_sound = new Howl({
+      src: ['../../../assets/button-click.mp3'],
+      html5 :true      
+    });
+
+    // Initialize the sound when marking cell
+    var sounds = ['cell-mark1', 'cell-mark2', 'cell-mark3', 'cell-mark4', 'cell-mark5'];
+    for (var i=0; i < sounds.length; i++){
+      
+      this.cell_marks[i] = new Howl({
+	src: ['../../../assets/' +  sounds[i] + '.mp3'],	
+	volume: 0.2,
+	html5: true
+      })
+
+      // console.log(this.cell_marks[i]);
+    }
+
+
+    this.error_sound = new Howl({
+      src: ['../../../assets/error.mp3'],
+      html5 :true      
+    });
+
+  }
+  
+
+
+  playRandomSound() :void{
+    var sounds = ['cell-mark1', 'cell-mark2', 'cell-mark3', 'cell-mark4', 'cell-mark5'];
+
+    var soundFile = Math.floor(Math.random() * sounds.length);
+    console.log("ABout to play" + typeof(this.cell_marks))
+    this.cell_marks[soundFile].play();
+
     
+
   }
 
   getMapSize(mapsize : MapSize) : number{
     switch(mapsize){
       case(MapSize.Small):{
-	return 5
+	return 8
       }
       case(MapSize.Medium):{
-	return 6;
+	return 10;
       }
       case(MapSize.Large):{
-	return 8;
+	return 12;
       }
       case(MapSize.VeryLarge):{
-	return 10;
+	return 14;
       }
       default: {
 	// return based on medium size
@@ -95,34 +141,37 @@ export class GameTableComponent implements OnInit {
     return newGameState;
   }
 
-  generateMap() : void{
-    
-  }
+
 
   selectCell(i: number, j: number){
-    console.log("Cell ["+i+","+j+"] has been selected" );
+    //console.log("Cell ["+i+","+j+"] has been selected" );
     var selectedCell : CellComponent =  this.findCorrectCell(i, j);
-    console.log(selectedCell)
+    //    console.log(selectedCell)
     // Make the decision
     if (this.CurrentPlayer == Player.PLAYER_ONE && this.GameState[i][j].state == 0 ){
       this.GameState[i][j].state = this.CurrentPlayer;
 
+      this.playRandomSound()
       selectedCell.changeState(this.CurrentPlayer);
       this.CurrentPlayer = Player.PLAYER_TWO;
             
     }else if (this.CurrentPlayer == Player.PLAYER_TWO && this.GameState[i][j].state == 0 ){
       this.GameState[i][j].state = this.CurrentPlayer;
+
+      this.playRandomSound()
       selectedCell.changeState(this.CurrentPlayer);
       this.CurrentPlayer = Player.PLAYER_ONE;
 
       
     }else{
       // Nothing happend
-      console.log("INVALID MOVE");
+      //console.log("INVALID MOVE");
+      this.error_sound.play();
+      
     }
 
 
-    console.log(this.GameState)
+//    console.log(this.GameState)
   }
 
 
@@ -137,11 +186,12 @@ export class GameTableComponent implements OnInit {
   
   
   ngAfterViewInit() {
-    this.allCells.toArray().forEach(instance => console.log(instance))    
+    //this.allCells.toArray().forEach(instance => console.log(instance))    
   }
   
   goBack(): void {
     this.location.back();
+    this.back_sound.play();
   }
-  
+
 }
