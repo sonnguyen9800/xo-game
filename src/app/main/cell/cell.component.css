@@ -9,3 +9,10 @@ div {
 p {
     color: black;
 }
+
+img {
+    
+    margin: auto;
+    height: 100%;
+    width: auto;
+}

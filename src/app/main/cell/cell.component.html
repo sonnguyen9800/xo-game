@@ -1,13 +1,8 @@
 <div>
-    <p>
-	Row:{{this.row}}	
-    </p>
 
-    <p>	
-	Column: {{this.column}}
-    </p>
 
-    <p>
-	State: {{this.state}}
-    </p>
+    <img class="symbol" *ngIf="this.state == this.playerInstance.PLAYER_ONE  " alt="" src="../../../assets/x.svg"/>
+    <img class="symbol" *ngIf="this.state == this.playerInstance.PLAYER_TWO  " alt="" src="../../../assets/o.svg"/>
+
+
 </div>
