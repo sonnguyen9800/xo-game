@@ -9,7 +9,11 @@ import { CellImp } from '../cell/CellImp';
 
 import { Player } from '../../Player';
 import {CellComponent } from '../cell/cell.component'
-import {Howl } from 'howler';
+// import {Howl } from 'howler';
+
+
+import  SoundManager  from '../../SoundManager';
+
 
 @Component({
   selector: 'app-game-table',
@@ -18,19 +22,10 @@ import {Howl } from 'howler';
 })
 export class GameTableComponent implements OnInit {
 
-  back_sound : Howl;
-  cell_marks : Howl[] = [];
-  error_sound : Howl;
-  
   
   
  @ViewChildren(CellComponent) allCells: QueryList<CellComponent>;
-  // @ContentChildren('cell')  allCells: QueryList<CellComponent>;
-  
 
-
-  
-  
   public opponent: OpponentType;
   public mapsize: MapSize;
   
@@ -43,10 +38,14 @@ export class GameTableComponent implements OnInit {
   // Make Array 2d represent the state of the map (table).
   // Using CellImp as the class for object
   public GameState : CellImp[][];
-   
+
+  // Initialize an instance of SoundManager to play sound
+  public soundPlayer : SoundManager = new SoundManager();
+
+  
   constructor(
     private activateRouter: ActivatedRoute,
-    private location : Location) {
+    private location : Location  ) {
 
     // Get values from the url parameters
     this.activateRouter.paramMap.subscribe(params => {            
@@ -66,46 +65,10 @@ export class GameTableComponent implements OnInit {
   ngOnInit(): void {
     // Create the map 2d GameState
     this.GameState = this.initializeGameState(this.size);        
-
-
-    this.back_sound = new Howl({
-      src: ['../../../assets/button-click.mp3'],
-      html5 :true      
-    });
-
-    // Initialize the sound when marking cell
-    var sounds = ['cell-mark1', 'cell-mark2', 'cell-mark3', 'cell-mark4', 'cell-mark5'];
-    for (var i=0; i < sounds.length; i++){
-      
-      this.cell_marks[i] = new Howl({
-	src: ['../../../assets/' +  sounds[i] + '.mp3'],	
-	volume: 0.2,
-	html5: true
-      })
-
-      // console.log(this.cell_marks[i]);
-    }
-
-
-    this.error_sound = new Howl({
-      src: ['../../../assets/error.mp3'],
-      html5 :true      
-    });
-
   }
   
 
 
-  playRandomSound() :void{
-    var sounds = ['cell-mark1', 'cell-mark2', 'cell-mark3', 'cell-mark4', 'cell-mark5'];
-
-    var soundFile = Math.floor(Math.random() * sounds.length);
-    console.log("ABout to play" + typeof(this.cell_marks))
-    this.cell_marks[soundFile].play();
-
-    
-
-  }
 
   getMapSize(mapsize : MapSize) : number{
     switch(mapsize){
@@ -151,14 +114,14 @@ export class GameTableComponent implements OnInit {
     if (this.CurrentPlayer == Player.PLAYER_ONE && this.GameState[i][j].state == 0 ){
       this.GameState[i][j].state = this.CurrentPlayer;
 
-      this.playRandomSound()
+      this.soundPlayer.playRandomSound()
       selectedCell.changeState(this.CurrentPlayer);
       this.CurrentPlayer = Player.PLAYER_TWO;
             
     }else if (this.CurrentPlayer == Player.PLAYER_TWO && this.GameState[i][j].state == 0 ){
       this.GameState[i][j].state = this.CurrentPlayer;
 
-      this.playRandomSound()
+      this.soundPlayer.playRandomSound()
       selectedCell.changeState(this.CurrentPlayer);
       this.CurrentPlayer = Player.PLAYER_ONE;
 
@@ -166,7 +129,6 @@ export class GameTableComponent implements OnInit {
     }else{
       // Nothing happend
       //console.log("INVALID MOVE");
-      this.error_sound.play();
       
     }
 
@@ -191,7 +153,7 @@ export class GameTableComponent implements OnInit {
   
   goBack(): void {
     this.location.back();
-    this.back_sound.play();
+    this.soundPlayer.playButtonSound();
   }
 
 }

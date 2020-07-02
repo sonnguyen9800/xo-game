@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OpponentType, MapSize } from '../GameMode';
 import { GameConfig } from '../game-config';
-import {Howl } from 'howler';
 import {Router } from '@angular/router';
+import SoundManager from '../SoundManager';
+
 
 @Component({
   selector: 'app-main',
@@ -10,6 +11,11 @@ import {Router } from '@angular/router';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  // Declare sound object
+
+  public SoundManager : SoundManager = new SoundManager();
+
+  // Data for html
   AllMode = OpponentType;
   AllMap = MapSize;
 
@@ -21,10 +27,6 @@ export class MainComponent implements OnInit {
     Opponent: this.mode
   }
   
-  // Declare sound object
-  sound : Howl ;
-  start_sound: Howl;
-  background_soundtrack : Howl;
 
   
   
@@ -33,40 +35,30 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sound = new Howl({
-      src: ['../../assets/button-click.mp3'],
-      html5 :true      
-    });
-
-    this.start_sound = new Howl({
-      src: ['../../assets/start-button.mp3'],
-      html5: true
-    })
-
-     this.background_soundtrack = new Howl({
-       src: ['../../assets/background1.mp3'],
-       loop: true,
-      html5: true
-    })
-    // this.background_soundtrack.play()    
+    
   }
 
 
   selectOpponent(type: OpponentType) :void {
+    this.SoundManager.playButtonSound();
     this.mode = type;
-    this.sound.play();
   }
 
   selectMap(map: MapSize) :void {
+
+    this.SoundManager.playButtonSound();
     this.size = map;
-    this.sound.play();
   }
 
   playGame(){
-    this.start_sound.play();
+    //Play Sound First
+    this.SoundManager.playStartSound();
+
+    // Set the GameOptions(Config)
     this.gameConfig.Map = this.size;
     this.gameConfig.Opponent = this.mode;
-    console.log("Game: " + this.gameConfig.Opponent + "; Map Type: " + this.gameConfig.Map);
+    //console.log("Game: " + this.gameConfig.Opponent + "; Map Type: " + this.gameConfig.Map);
+
     this.router.navigate(
       ['game', this.gameConfig.Opponent, this.gameConfig.Map]
     )
@@ -74,7 +66,6 @@ export class MainComponent implements OnInit {
   }
 
   toAboutPage(){
-    this.start_sound.play();
     this.router.navigateByUrl('/about');
   }
 }
