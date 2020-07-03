@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild, QueryList, ElementRef, ContentChildren, ViewChildren  } from '@angular/core';
+import { Component, OnInit,  QueryList, ViewChildren  } from '@angular/core';
 
 import { Location } from '@angular/common';
-import { OpponentType, MapSize } from '../../GameMode';
 import { ActivatedRoute } from '@angular/router';
 
 
+import { OpponentType, MapSize } from '../../GameMode';
 import { CellImp } from '../cell/CellImp';
-
 import { Player } from '../../Player';
 import {CellComponent } from '../cell/cell.component'
-// import {Howl } from 'howler';
+
+// Game Manager to determine win/lose, and send request to server
+import { GameManagerService } from '../../game-manager.service';
 
 
 import  SoundManager  from '../../SoundManager';
@@ -22,8 +23,11 @@ import  SoundManager  from '../../SoundManager';
 })
 export class GameTableComponent implements OnInit {
 
-  
-  
+  // GameManager:
+  gameManager: GameManagerService = new GameManagerService();
+
+
+  // ViewChild to query Cell 
  @ViewChildren(CellComponent) allCells: QueryList<CellComponent>;
 
   public opponent: OpponentType;
@@ -42,10 +46,14 @@ export class GameTableComponent implements OnInit {
   // Initialize an instance of SoundManager to play sound
   public soundPlayer : SoundManager = new SoundManager();
 
+
+  // Win/Lose Flag:
+  public winner: Player = Player.PLAYER_NONE;
+
   
   constructor(
     private activateRouter: ActivatedRoute,
-    private location : Location  ) {
+    private location : Location) {
 
     // Get values from the url parameters
     this.activateRouter.paramMap.subscribe(params => {            
@@ -113,16 +121,29 @@ export class GameTableComponent implements OnInit {
     // Make the decision
     if (this.CurrentPlayer == Player.PLAYER_ONE && this.GameState[i][j].state == 0 ){
       this.GameState[i][j].state = this.CurrentPlayer;
-
       this.soundPlayer.playRandomSound()
       selectedCell.changeState(this.CurrentPlayer);
+
+      // assert winner
+      let newCell: CellImp = new CellImp(i,j);            
+      newCell.state = this.CurrentPlayer;
+      this.winner = this.gameManager.addCell(newCell);      
+
+      
+      // Swap Player's turn
       this.CurrentPlayer = Player.PLAYER_TWO;
-            
+                        
     }else if (this.CurrentPlayer == Player.PLAYER_TWO && this.GameState[i][j].state == 0 ){
       this.GameState[i][j].state = this.CurrentPlayer;
-
       this.soundPlayer.playRandomSound()
-      selectedCell.changeState(this.CurrentPlayer);
+      selectedCell.changeState(this.CurrentPlayer);      
+
+      // assert winner
+      let newCell: CellImp = new CellImp(i,j);            
+      newCell.state = this.CurrentPlayer;
+      this.winner = this.gameManager.addCell(newCell);
+            
+      //Swap Player Turn
       this.CurrentPlayer = Player.PLAYER_ONE;
 
       
@@ -132,7 +153,8 @@ export class GameTableComponent implements OnInit {
       
     }
 
-
+    // this.gameManager.assertGameTable(this.GameState);
+    
 //    console.log(this.GameState)
   }
 

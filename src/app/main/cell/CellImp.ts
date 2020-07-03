@@ -10,7 +10,9 @@ export class CellImp implements Cell {
   constructor(row: number, column: number ){
     this.row = row;
     this.column = column;
-    this.state = 0;
-    
+    this.state = 0;    
   }
+
+
+  
 }
