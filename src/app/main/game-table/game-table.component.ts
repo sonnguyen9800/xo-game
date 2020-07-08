@@ -50,6 +50,10 @@ export class GameTableComponent implements OnInit {
   // Win/Lose Flag:
   public winner: Player = Player.PLAYER_NONE;
 
+
+  // GameProgress:
+  public onGoing: boolean = true;
+  
   
   constructor(
     private activateRouter: ActivatedRoute,
@@ -153,11 +157,18 @@ export class GameTableComponent implements OnInit {
       
     }
 
-    // this.gameManager.assertGameTable(this.GameState);
-    
-//    console.log(this.GameState)
+    if (this.winner == 0){
+      // nothing happend
+    } else if (this.winner == 1){
+      // First Player Victory
+      this.onGoing = false;
+    } else if (this.winner == 2){
+      this.onGoing = false;
+    }
+
   }
 
+ 
 
   findCorrectCell(i: number, j: number) : CellComponent{    
     for (var cell of this.allCells.toArray()){

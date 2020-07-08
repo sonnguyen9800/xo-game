@@ -8,7 +8,7 @@ import * as _ from  'lodash';
 })
 export class GameManagerService {
 
-  private WIN_CONDITION : number = 4;
+  private WIN_CONDITION : number = 5;
   constructor() { }
 
   private FirstPlayerCells : CellImp[] = [];
@@ -16,95 +16,233 @@ export class GameManagerService {
 
   private lastPlayer : Player;
 
+ 
 
-  // Take a possible group (can be a row/column/diagonal slash-backslash), then evaluate
-  // if it has a winning row -> return true and abort further iterations 
-  evaluateGroup(group: CellImp[]) : boolean{    
-    var winningFlag = true;
+  findWinningSegment(selectedCell: CellImp, otherCells: CellImp[]) : boolean{
+    // console.log("Finding Winning Segment for :")
+    // console.log(selectedCell);
+    
+    // Analyze
+    var possibleCandidates : [CellImp, CellImp, CellImp, CellImp,
+			      CellImp, CellImp, CellImp, CellImp];
+    possibleCandidates = [ new CellImp(-1, -1), new CellImp(-1, -1),
+			   new CellImp(-1, -1), new CellImp(-1, -1),
+			   new CellImp(-1, -1), new CellImp(-1, -1),
+			   new CellImp(-1, -1), new CellImp(-1, -1)]
 
-    // intialize the OpponentsCell
-    var PlayerCellsOpponents : CellImp[] = [];
-    if (group[0].state == Player.PLAYER_ONE){
-      PlayerCellsOpponents = this.SecondPlayerCells;
-    } else if (group[0].state == Player.PLAYER_TWO){
-      PlayerCellsOpponents = this.FirstPlayerCells;
-    }
-    
-    
-    // Check if the group has enough cell (stone) -> if it has enough -> Iterate through its cell to evaluate
-    if (group.length >= this.WIN_CONDITION){
+    // These two below number should be fixed
+    var selectedRow = selectedCell.row;
+    var selectedColumn = selectedCell.column;
+
+    //Finding cell for 1 position:
+    otherCells.forEach((cell) => {
+      // console.log("Checking cell:");
+      // console.log(cell);
       
-      // var startIndex = 0;
-      var winningRow : CellImp[] = [];
-      // Loop through each cell in that group
-      for (var i = 0; i < group.length+1; i++){
-	winningRow.push(group[i]);	
-	try { if (group[i+1].column != group[i].column){ winningRow = []; }}
-	catch{ // reach the end of the column 
-	}	  
-	// Check length of winning Row to see if it is bigger/equal to the winning condition
-	if (winningRow.length >= this.WIN_CONDITION){
-	  // Check the two boundaries of this row:
-	  // get the two outer-most cell of this winning row
-	  var first_cell = winningRow[0]; var last_cell = winningRow[winningRow.length-1];
-	    // Coutner to count the boundaries
-	  var boundary_counter = 0;
-	  for (var i = 0; i < PlayerCellsOpponents.length; i++){
-	    if (PlayerCellsOpponents[i].row == first_cell.row && PlayerCellsOpponents[i].column == (first_cell.column-1)){
-	      // Detect one boundaries
-	      boundary_counter+=1;
-	      }
-	    
-	    if (this.SecondPlayerCells[i].row == first_cell.row && this.SecondPlayerCells[i].column == (last_cell.column+1)){
-	      // Detect one boundaries
-	      boundary_counter+=1;
-	    }
-	    if (boundary_counter == 2){
-	      // If two boundaries are found -> The winning row is blocked
-	      winningFlag = false;
-	      break;
-	    }
-	  }
-	  // End of checking
-	}else{
-	  winningFlag = false;
-	}
+      if (cell.row == selectedRow-1 &&
+    	  cell.column == selectedColumn-1 &&
+    	  cell.state == selectedCell.state){
+    	// First case => First position (Leftmost-top position)
+    	possibleCandidates[0] = cell;	
+      } else if (cell.row == selectedRow-1 &&
+    		 cell.column == selectedColumn
+    		 && cell.state == selectedCell.state){
+    	// Second case => Second position (Middle-top position)
+    	possibleCandidates[1] = cell;
+      } else if (cell.row == selectedRow-1 &&
+    		 cell.column == selectedColumn +1
+    		 && cell.state == selectedCell.state){
+    	// Third case => Second position (Rightmost-top position)
+    	possibleCandidates[2] = cell;
+      } else if (cell.row == selectedRow &&
+    		 cell.column == selectedColumn+1
+    		 && cell.state == selectedCell.state){
+    	// Forth case => Rightmost-middle position)
+    	possibleCandidates[3] = cell;
+      } else if (cell.row == selectedRow+1 &&
+    		 cell.column == selectedColumn+1
+    		 && cell.state == selectedCell.state){
+    	// Fifth case => Rightmost-low position)
+    	possibleCandidates[4] = cell;
+      } else if (cell.row == selectedRow+1 &&
+    		 cell.column == selectedColumn
+    		 && cell.state == selectedCell.state){
+    	// Sixthe case => Middle, low position
+	// console.log("Somehing wrong...");
+    	possibleCandidates[5] = cell;
+      } else if (cell.row == selectedRow+1 &&
+    		 cell.column == selectedColumn-1
+    		 && cell.state == selectedCell.state){
+    	// Seven case => Leftmost, low position
+    	possibleCandidates[6] = cell;
+      } else if (cell.row == selectedRow &&
+    		 cell.column == selectedColumn-1
+    		 && cell.state == selectedCell.state){
+    	// Eight case => Leftmost, middle position
+    	possibleCandidates[7] = cell;	
+      } else {
+    	// do nothing
+
+      }           
+    })
+
+    for (var i = 0; i < 8 ; i++){
+      if (possibleCandidates[i].row != -1){	
+	// If the placeholder of matching candidates is not null => have matche value
+	var counter = 1;
+	// Begin counter;
+	var direction = i;
+	// initialize second matched cell for the winning segment
+	var nextCell = possibleCandidates[i];
+
+	// console.log("Possible Candidates: on direction " + i +" From cell of row"
+	// 	    + selectedCell.row + " column: " + selectedCell.column);
 	
-	if (winningFlag == true){  return true   }
+	// console.log("Counter " + counter + "Current Cell");
+	// console.log(nextCell);
+	
+	
+	while (nextCell != null && nextCell.state == selectedCell.state){
+
+	  
+	  counter = counter + 1;
+	  nextCell = this.nextCellMatchResult(nextCell, direction, otherCells);
+	  
+	  // console.log("Counter " + counter + "Current Cell");	  
+	  // console.log(nextCell);
+	};
+	
+	if (counter >= this.WIN_CONDITION && nextCell == null ){
+	  // Counter reaches requires limit and nextcell.state is not belong to opponent
+	  console.log("VICTORY FOR YOU!!!!")
+	  return true
+	}		
       }
-    }
-    
-  }
-}
-
-  // This function take all input of one player's move and evaluate his winning state
-  assertPlayerTable(PlayerCells : CellImp[], PlayerCellsOpponents : CellImp[]) : boolean{
-    console.log("Cells:")
-    var PlayerType : Player = PlayerCells[0].state;
-    
-    // Sorting through the array based on row
-    var arr = PlayerCells.sort((a: CellImp,b: CellImp) => a.row - b.row );
-    // divide this player's cell into groups based on row
-    var groups = _.groupBy(arr, 'row');
-
-    console.log(groups)
-
-    var winningFlag = true;
-
-    // Interate through all key in the dictionary:
-    for (let key in groups){
-      // Initialize the winning flag
-      winningFlag = this.evaluateGroup(groups[key])
-      
-    }
-    
+    }    
+    return false;
   }
 
 
+  // Checking cell()
+  
+  nextCellMatchResult(selectedCell : CellImp, direction: number, otherCells: CellImp[]): CellImp{
+    // console.log("Selected Cell:")
+    // console.log(selectedCell);
+    
+    var OpponentCell : CellImp[];
+    if (selectedCell.state == Player.PLAYER_ONE){
+      OpponentCell = this.SecondPlayerCells;
+    }
 
+    if (selectedCell.state == Player.PLAYER_TWO){
+      OpponentCell = this.FirstPlayerCells;
+    }
 
+    
+    var nextCell : CellImp = new CellImp(-1, -1);
+    switch (direction){
+	// direction one
+      case(0):{
+	// first case
+	nextCell.row = selectedCell.row -1 ;
+	nextCell.column = selectedCell.column - 1;	
+	break;
+      }
 
+      case(1):{
+	// Second case
+	nextCell.row = selectedCell.row -1 ;
+	nextCell.column = selectedCell.column;
+	break;
+      }
 
+      case(2):{
+	// Third case
+	nextCell.row = selectedCell.row-1 ;
+	nextCell.column = selectedCell.column + 1;
+	break;
+      }
+	
+      case(3):{
+	// Forth case
+	nextCell.row = selectedCell.row ;
+	nextCell.column = selectedCell.column + 1;
+	break;
+      }
+	
+      case(4):{
+	// Fifth case
+	nextCell.row = selectedCell.row + 1 ;
+	nextCell.column = selectedCell.column + 1 ;
+	break;
+      }
+	
+      case(5):{
+	// Second case
+	nextCell.row = selectedCell.row + 1 ;
+	nextCell.column = selectedCell.column ;
+	break;
+      }
+	
+      case(6):{
+	// Second case
+	nextCell.row = selectedCell.row + 1 ;
+	nextCell.column = selectedCell.column - 1 ;
+	
+	break;
+      }
+	
+      case(7):{
+	// Second case
+	nextCell.row = selectedCell.row  ;
+	nextCell.column = selectedCell.column - 1 ;	
+	break;
+      }	
+	
+    }
+
+    // console.log("Next expected cell in row:");
+    // console.log(nextCell);
+
+    
+    OpponentCell.forEach((cell) => {
+      if (cell.row == nextCell.row && cell.column == nextCell.column){
+	nextCell = cell;
+      }
+    })
+
+    otherCells.forEach((cell) => {
+      if (cell.row == nextCell.row && cell.column == nextCell.column){
+	nextCell = cell;
+      }
+    })
+    if (nextCell.state != 0){
+      return nextCell
+    }
+    // return 0 -> next cell is blank; 1 -> next cell is allied call; -1 : next cell is opponent cell
+    return null;
+  }
+  
+
+  
+  
+// This function take all input of one player's move and evaluate his winning state
+  assertPlayerTable(PlayerCells : CellImp[]) : boolean{    
+    // console.log("All Cell made by player " + PlayerCells[0].state + " is:");
+    // console.log(PlayerCells)
+
+    var flag = false;
+    PlayerCells.some((cell) => {
+      if (this.findWinningSegment(cell, PlayerCells) == true){
+	flag = true;
+      }
+    })
+    
+
+    
+    //default: return false
+    return flag; 
+  }
 
 
   addCell(cell: CellImp) : number{
@@ -113,7 +251,9 @@ export class GameManagerService {
 
       // Evaluate
       this.lastPlayer = Player.PLAYER_ONE;
-      var winYet = this.assertPlayerTable(this.FirstPlayerCells, this.SecondPlayerCells);
+      var winYet = this.assertPlayerTable(this.FirstPlayerCells);
+     console.log("Player 1 just make move "+ cell.row + ";" + cell.column + " Win?: " + winYet);
+
       if (winYet == true){return 1;}
     }
     else if (cell.state == Player.PLAYER_TWO){
@@ -121,7 +261,10 @@ export class GameManagerService {
 
       // Evaluate
       this.lastPlayer = Player.PLAYER_TWO;
-      var winYet = this.assertPlayerTable(this.SecondPlayerCells, this.FirstPlayerCells);
+      var winYet = this.assertPlayerTable(this.SecondPlayerCells);
+
+     console.log("Player 2 just make move "+ cell.row + ";" + cell.column + " Win?: " + winYet);
+
       if (winYet == true){
 	return 2;
       }
