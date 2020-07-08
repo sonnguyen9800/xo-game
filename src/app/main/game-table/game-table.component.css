@@ -4,10 +4,15 @@ mat-grid-tile {
 
 .table-panel{
     margin-top: 3rem;
+    background-color: #212121;
+
 }
 .button-section{
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
+    padding-top: 4rem;
     text-align: center;
+    background-color: #212121;
+
 }
 
 button {
@@ -25,4 +30,8 @@ button {
     min-height: 5rem;
     border-radius: 5px;
     max-width: none;
+}
+
+body {
+    background-color: #212121;
 }

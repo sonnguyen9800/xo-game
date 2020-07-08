@@ -83,6 +83,8 @@ export class GameTableComponent implements OnInit {
   openDialog(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = this.winner;
+    // dialogConfig.hasBackdrop = false;
+    
     this.dialogWinner.open(WinnerDialogComponent, dialogConfig)
   }
 

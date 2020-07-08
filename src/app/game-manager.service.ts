@@ -114,7 +114,7 @@ export class GameManagerService {
 	
 	if (counter >= this.WIN_CONDITION && nextCell == null ){
 	  // Counter reaches requires limit and nextcell.state is not belong to opponent
-	  console.log("VICTORY FOR YOU!!!!")
+	//  console.log("VICTORY FOR YOU!!!!")
 	  return true
 	}		
       }
