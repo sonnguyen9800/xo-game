@@ -17,7 +17,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 - Select the map size
 - Hit Play! A new map will be rendered for you.
 - The game stop when one player win the duel.
-- Hit back to comeback the main page!
+- Hit "back" to return to the main page!
 - Enjoy
 
 ## Tool I Used:
