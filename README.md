@@ -22,6 +22,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Tool I Used:
 - Angular Material
+- Typescript
+- HTML
+- CSS
+- Linux and terminal
+- Emacs for code editor
 
 ## Demostration:
 Hit the image to visit the demo on youtube!
