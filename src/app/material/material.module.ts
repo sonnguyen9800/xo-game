@@ -32,7 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [],
   imports: [MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule,
 	    MatFormFieldModule, MatInputModule, MatCheckboxModule, MatRadioModule,
-	    MatDividerModule, MatGridListModule, FlexLayoutModule, MatDialogModule ],
+	    MatDividerModule, MatGridListModule, FlexLayoutModule, MatDialogModule  ],
   exports: [ MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule,
 	     MatFormFieldModule, MatInputModule, MatCheckboxModule, MatRadioModule,
 	     MatDividerModule, MatGridListModule, FlexLayoutModule, MatDialogModule ],

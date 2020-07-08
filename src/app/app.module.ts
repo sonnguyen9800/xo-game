@@ -24,6 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { WinnerDialogComponent } from './winner-dialog/winner-dialog.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { WinnerDialogComponent } from './winner-dialog/winner-dialog.component';
     BrowserAnimationsModule,
     HeaderModule, FooterModule, FontAwesomeModule,
     MainModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule
     
   ],
   providers: [],
