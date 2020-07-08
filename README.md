@@ -23,7 +23,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Demostration:
 Hit the image to visit the demo on youtube!
-[![Watch the video](https://img.youtube.com/vi/kSE5bZHLfU4//maxresdefault.jpg)](https://youtu.be/kSE5bZHLfU4/)
+[![Watch the video](https://img.youtube.com/vi/kSE5bZHLfU4/maxresdefault.jpg)](https://youtu.be/kSE5bZHLfU4/)
 
 ## Build
 
