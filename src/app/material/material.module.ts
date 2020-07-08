@@ -26,10 +26,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [],
-  imports: [MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatRadioModule, MatDividerModule, MatGridListModule, FlexLayoutModule  ],
-  exports: [ MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatRadioModule, MatDividerModule, MatGridListModule, FlexLayoutModule],
+  imports: [MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule,
+	    MatFormFieldModule, MatInputModule, MatCheckboxModule, MatRadioModule,
+	    MatDividerModule, MatGridListModule, FlexLayoutModule, MatDialogModule ],
+  exports: [ MatButtonModule, MatIconModule, MatToolbarModule, MatCardModule,
+	     MatFormFieldModule, MatInputModule, MatCheckboxModule, MatRadioModule,
+	     MatDividerModule, MatGridListModule, FlexLayoutModule, MatDialogModule ],
   
 })
 export class MaterialModule { }

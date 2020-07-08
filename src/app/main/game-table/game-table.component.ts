@@ -1,4 +1,4 @@
-import { Component, OnInit,  QueryList, ViewChildren  } from '@angular/core';
+import { Component, OnInit,  QueryList, ViewChildren, Inject  } from '@angular/core';
 
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -14,6 +14,8 @@ import { GameManagerService } from '../../game-manager.service';
 
 
 import  SoundManager  from '../../SoundManager';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { WinnerDialogComponent } from 'src/app/winner-dialog/winner-dialog.component';
 
 
 @Component({
@@ -54,11 +56,15 @@ export class GameTableComponent implements OnInit {
   // GameProgress:
   public onGoing: boolean = true;
   
+
+  //game Dialog
+
   
   constructor(
     private activateRouter: ActivatedRoute,
-    private location : Location) {
-
+    private location : Location,
+    public dialogWinner : MatDialog
+) {    
     // Get values from the url parameters
     this.activateRouter.paramMap.subscribe(params => {            
       this.opponent = params.get('opponent') as OpponentType;
@@ -72,6 +78,13 @@ export class GameTableComponent implements OnInit {
             
   }
 
+
+  // Open Dialog
+  openDialog(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = this.winner;
+    this.dialogWinner.open(WinnerDialogComponent, dialogConfig)
+  }
 
   // Get the values from params then generate map
   ngOnInit(): void {
@@ -119,10 +132,18 @@ export class GameTableComponent implements OnInit {
 
 
   selectCell(i: number, j: number){
+    if (this.onGoing == false){
+      return null;
+    }
+
+    
     //console.log("Cell ["+i+","+j+"] has been selected" );
     var selectedCell : CellComponent =  this.findCorrectCell(i, j);
     //    console.log(selectedCell)
     // Make the decision
+    
+
+    
     if (this.CurrentPlayer == Player.PLAYER_ONE && this.GameState[i][j].state == 0 ){
       this.GameState[i][j].state = this.CurrentPlayer;
       this.soundPlayer.playRandomSound()
@@ -162,8 +183,10 @@ export class GameTableComponent implements OnInit {
     } else if (this.winner == 1){
       // First Player Victory
       this.onGoing = false;
+      this.openDialog()
     } else if (this.winner == 2){
       this.onGoing = false;
+      this.openDialog();
     }
 
   }
@@ -188,5 +211,8 @@ export class GameTableComponent implements OnInit {
     this.location.back();
     this.soundPlayer.playButtonSound();
   }
+
+
+
 
 }

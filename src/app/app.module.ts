@@ -22,11 +22,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // import flex layout module
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { WinnerDialogComponent } from './winner-dialog/winner-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
+    WinnerDialogComponent,
   ],
   imports: [
     BrowserModule, 
