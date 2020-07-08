@@ -35,4 +35,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Further Work
 - Design AI for player
 - Create backend server on Django
-
+## License
+DON'T USE this thing for assignment!
+Free for educational purpose.
