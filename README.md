@@ -1,4 +1,4 @@
-![Screenshot from 2020-07-08 20-36-14](https://user-images.githubusercontent.com/45099020/86925206-bf5d4680-c15a-11ea-9a3b-56e5887f2954.png)
+![Screenshot from 2020-07-08 20-38-46](https://user-images.githubusercontent.com/45099020/86925429-14995800-c15b-11ea-8374-d2ba613a9a47.png)
 
 # XoGame
 
@@ -25,7 +25,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Demostration:
 Hit the image to visit the demo on youtube!
-[![Watch the video](https://img.youtube.com/vi/kSE5bZHLfU4/maxresdefault.jpg)](https://youtu.be/kSE5bZHLfU4/)
+[![Watch the video](https://img.youtube.com/vi/BMXzO7_fQqU/maxresdefault.jpg)](https://youtu.be/BMXzO7_fQqU/)
 
 ## Build
 
