@@ -1,3 +1,5 @@
+![Screenshot from 2020-07-08 20-36-14](https://user-images.githubusercontent.com/45099020/86925206-bf5d4680-c15a-11ea-9a3b-56e5887f2954.png)
+
 # XoGame
 
 A funny game to play with your friends!
